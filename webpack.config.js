@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = (env) => {
   return {
     devServer: {
-      static: path.resolve(__dirname, 'public'),
+      static: [path.resolve(__dirname, 'public')],
       historyApiFallback: true,
     },
     devtool: env.production ? 'source-map' : 'eval-cheap-module-source-map',
@@ -34,8 +34,9 @@ module.exports = (env) => {
       }],
     },
     output: {
-      filename: 'bundle.js',
-      path: path.resolve(__dirname, 'public')
+      filename: "bundle.js",
+      path: path.resolve(__dirname, "public", "dist"),
+      publicPath: "/dist/"
     },
     plugins: [new MiniCssExtractPlugin({ 
       filename: 'styles.css'
